@@ -1,0 +1,56 @@
+<div class="cuerpo">
+    <img src="../../assets/images/banner_rick.jpeg" class="imagen-titulo" alt="titulo de rick y morty">
+    <div class="contenedor">
+        <p-card>
+            <div class="grid grid-cols-4 gap-x-3">
+                <p-dropdown class="col-span-1" [options]="filterRick" placeholder="Seleccione filtro" (onChange)="filterCharacter($event)" [(ngModel)]="selectedFilterRick" optionLabel="name"></p-dropdown>
+                <span stye class="col-span-1 p-float-label p-input-icon-right icono-buscar">
+                    <i (click)="searchCharacter()" class="pi pi-search"></i>
+                    <input [disabled]="disabledModeVisualitazion" class="w-full" type="text" id="inputtext-right" pInputText [(ngModel)]="valueName"> 
+                    <label for="inputtext-right">Escribe el nombre</label>
+                </span>
+                <div class="col-span-1 mx-auto">
+                    Modo de visualización:
+                    <div class="inline">
+                        <p-radioButton class="radio" name="tabla" value="0" [(ngModel)]="selectedFilterTableCard" inputId="tabla"></p-radioButton>
+                        <label for="tabla"> Tabla</label>
+                        <p-radioButton class="radio" name="city" value="1" [(ngModel)]="selectedFilterTableCard" inputId="radio"></p-radioButton>
+                        <label for="radio"> Cards</label>
+                    </div>
+                </div>
+                <div class="col-span-1 mx-auto">
+                    <button (click)="searchCharacter()" pButton pRipple type="button" icon="pi pi-search" class="p-button-rounded p-button-success ml-3"></button>
+                </div>
+            </div>
+            <div *ngIf="loadingCharacter; else visualizacion" class="flex justify-center mt-10">
+                <p-progressSpinner [style]="{width: '100px', height: '100px'}" styleClass="custom-spinner" strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s"></p-progressSpinner>
+            </div>
+            <!-- visualizacion -->
+            <ng-template #visualizacion>
+                <div [ngSwitch]="selectedFilterTableCard">
+                    <div *ngSwitchCase="0">
+                        <rm-table-lazy
+                            [data]="characters"
+                            [totalRecords]="totalRecords"
+                            [loadingCharacters]="loadingCharacters"
+                            (eventLazyLoad)="getCharactersPerPagination($event)"
+                        ></rm-table-lazy>
+                    </div>
+                    <div *ngSwitchCase="1">
+                        <p-carousel class="block mt-7" [value]="characters.slice()" orientation="horizontal" [numVisible]="5" [numScroll]="2" [circular]="true" [page]="0" [responsiveOptions]="responsiveOptions">
+                            <ng-template let-character pTemplate="item">
+                                <div class="product-item">
+                                    <div class="product-item-content">
+                                        <rm-card
+                                            [data]="character"
+                                        ></rm-card>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </p-carousel>
+                    </div>
+                </div>
+            </ng-template>
+        </p-card>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+.cuerpo{
+    background-color: #434343;
+    height: 100vh;
+    width: 100vw;
+}
+
+.imagen-rick{
+    width: 100vw;
+    height: 36vh;
+}
+
+.product-item {
+    .product-item-content {
+        margin: .3rem;
+        text-align: center;
+        padding: 2rem 0;
+    }
+
+    .product-image {
+        width: 50%;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
+    }
+}
+
+.button-center {
+    display: block;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+  

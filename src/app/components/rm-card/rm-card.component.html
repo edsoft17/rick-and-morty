@@ -1,0 +1,22 @@
+<article class="card">
+    <header class="card__header">
+      <img src="assets/images/card-pattern.svg" alt="pattern card" class="card__header-image" />
+      <img [src]="data.image" alt="profile image" (mouseenter)="ejecutarMouseEnter(data)" class="card__header-profile" />
+    </header>
+    <section class="card__body">
+      <p class="card__text">
+        {{data.name}}
+      </p>
+      <p class="card__text card__text--light">{{data.species}} - {{data.gender}}</p>
+    </section>
+    <footer class="card__footer">
+      <div class="card__stats__location">
+        <p class="card__number">{{data.location?.name}}</p>
+        <p class="card__text card__text--light">Last Location</p>
+      </div>
+      <!-- <div class="card__stats">
+        <p class="card__number">1.4K</p>
+        <p class="card__text card__text--light">Photos</p>
+      </div> -->
+    </footer>
+  </article>

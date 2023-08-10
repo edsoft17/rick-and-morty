@@ -1,0 +1,21 @@
+<div class="cuerpo" #main>
+    <img src="../../assets/images/banner.png" alt="portal de rick y morty" class="imagen-rick">
+    <button routerLink="/characters" pButton pRipple type="button" label="Ver Detalles" class="p-button-rounded p-button-secondary button-center"></button>
+    <p-carousel [value]="characters" orientation="horizontal" [numVisible]="5" [numScroll]="2" [circular]="true" [autoplayInterval]="3000"  [responsiveOptions]="responsiveOptions">
+        <ng-template let-character pTemplate="item">
+            <div class="product-item">
+                <div class="product-item-content">
+                    <rm-card
+                        [data]="character"
+                        (eventMouseEnter)="openInformationalDialog($event)"
+                    ></rm-card>
+                </div>
+            </div>
+        </ng-template>
+    </p-carousel>
+</div>
+<rm-modal-simple #simple
+    [isVisible]="showModal"
+></rm-modal-simple>
+
+ 
